@@ -32,7 +32,6 @@ delBttn.addEventListener("click", () => {
   if (operator === "") {
     firstNum = firstNum.slice(0, -1);
     userInput.textContent = firstNum;
-    console.log(firstNum);
   } else {
     secondNum = secondNum.slice(0, -1);
   }
@@ -144,72 +143,189 @@ clearBttn.addEventListener("click", () => {
   firstNum = "";
   secondNum = "";
   result = "";
-  console.clear();
 });
 
 multiplyBttn.addEventListener("click", () => {
-  if (operator === "") {
+  if (firstNum === "") {
+    userInput.textContent += "";
+    operator = "";
+  } else if (firstNum !== "" && operator === "") {
     userInput.textContent += " * ";
     operator = "*";
-  } else {
+  } else if (firstNum !== "" && operator !== "" && secondNum !== "") {
+    let result;
+    if (operator === "+") {
+      result = parseFloat(firstNum) + parseFloat(secondNum);
+    } else if (operator === "-") {
+      result = parseFloat(firstNum) - parseFloat(secondNum);
+    } else if (operator === "*") {
+      result = parseFloat(firstNum) * parseFloat(secondNum);
+    } else if (operator === "/") {
+      result = parseFloat(firstNum) / parseFloat(secondNum);
+    }
+
+    userInput.textContent = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+
+    firstNum = result;
+    secondNum = "";
+    operator = "*";
+    userInput.textContent += " * ";
   }
 });
 
 divideBttn.addEventListener("click", () => {
-  if (operator === "") {
-    userInput.textContent += " / ";
+  if (firstNum === "") {
+    userInput.textContent += "";
+    operator = "";
+  } else if (firstNum !== "" && operator === "") {
+    userInput.textContent += " ÷ ";
     operator = "/";
-  } else {
+  } else if (firstNum !== "" && operator !== "" && secondNum !== "") {
+    let result;
+    if (operator === "+") {
+      result = parseFloat(firstNum) + parseFloat(secondNum);
+    } else if (operator === "-") {
+      result = parseFloat(firstNum) - parseFloat(secondNum);
+    } else if (operator === "*") {
+      result = parseFloat(firstNum) * parseFloat(secondNum);
+    } else if (operator === "/") {
+      result = parseFloat(firstNum) / parseFloat(secondNum);
+    }
+
+    userInput.textContent = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+
+    firstNum = result;
+    secondNum = "";
+    operator = "/";
+    userInput.textContent += " ÷ ";
   }
 });
 
 substractBttn.addEventListener("click", () => {
-  if (operator === "") {
+  if (firstNum === "") {
+    userInput.textContent += "";
+    operator = "";
+  } else if (firstNum !== "" && operator === "") {
     userInput.textContent += " - ";
     operator = "-";
-  } else {
-  }
-});
+  } else if (firstNum !== "" && operator !== "" && secondNum !== "") {
+    let result;
+    if (operator === "+") {
+      result = parseFloat(firstNum) + parseFloat(secondNum);
+    } else if (operator === "-") {
+      result = parseFloat(firstNum) - parseFloat(secondNum);
+    } else if (operator === "*") {
+      result = parseFloat(firstNum) * parseFloat(secondNum);
+    } else if (operator === "/") {
+      result = parseFloat(firstNum) / parseFloat(secondNum);
+    }
 
-dotBttn.addEventListener("click", () => {
-  if (operator === "") {
-    userInput.textContent += ".";
-    firstNum += ".";
-  } else {
-    secondNum += ".";
-    userInput.textContent += ".";
+    userInput.textContent = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+
+    firstNum = result;
+    secondNum = "";
+    operator = "-";
+    userInput.textContent += " - ";
   }
 });
 
 sumBttn.addEventListener("click", () => {
-  if (operator === "") {
+  if (firstNum === "") {
+    userInput.textContent += "";
+    operator = "";
+  } else if (firstNum !== "" && operator === "") {
     userInput.textContent += " + ";
     operator = "+";
-  } else {
+  } else if (firstNum !== "" && operator !== "" && secondNum !== "") {
+    let result;
+    if (operator === "+") {
+      result = parseFloat(firstNum) + parseFloat(secondNum);
+    } else if (operator === "-") {
+      result = parseFloat(firstNum) - parseFloat(secondNum);
+    } else if (operator === "*") {
+      result = parseFloat(firstNum) * parseFloat(secondNum);
+    } else if (operator === "/") {
+      result = parseFloat(firstNum) / parseFloat(secondNum);
+    }
+
+    userInput.textContent = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+
+    firstNum = result;
+    secondNum = "";
+    operator = "+";
+    userInput.textContent += " + ";
+  }
+});
+
+dotBttn.addEventListener("click", () => {
+  if (firstNum == "") {
+    userInput.textContent += "";
+  } else if (firstNum !== "" && operator === "") {
+    if (firstNum[firstNum.length - 1] !== ".") {
+      userInput.textContent += ".";
+      firstNum += ".";
+    }
+  } else if (firstNum !== "" && operator !== "") {
+    if (secondNum[secondNum.length - 1] !== ".") {
+      userInput.textContent += ".";
+      secondNum += ".";
+    }
   }
 });
 
 function operate(num1, num2, oper) {
   if (oper == "+") {
     let result = parseFloat(num1) + parseFloat(num2);
-    userInput.textContent = result;
-    console.log(result);
+    userInput.textContent = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+    firstNum = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+    secondNum = "";
+    operator = "";
   } else if (oper == "-") {
     let result = parseFloat(num1) - parseFloat(num2);
-    userInput.textContent = result;
-    console.log(result);
+    userInput.textContent = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+    firstNum = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+    secondNum = "";
+    operator = "";
   } else if (oper == "*") {
     let result = parseFloat(num1) * parseFloat(num2);
-    userInput.textContent = result;
-    console.log(result);
+    userInput.textContent = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+    firstNum = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+    secondNum = "";
+    operator = "";
   } else if (oper == "/") {
     let result = parseFloat(num1) / parseFloat(num2);
-    userInput.textContent = result;
-    console.log(result);
+    userInput.textContent = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+    firstNum = parseFloat(result.toFixed(4))
+      .toString()
+      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+    secondNum = "";
+    operator = "";
   }
-  return result
+  return result;
 }
 
 resultBttn.addEventListener("click", () => {
-    operate(firstNum, secondNum, operator)
+  operate(firstNum, secondNum, operator);
 });
