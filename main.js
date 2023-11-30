@@ -183,6 +183,11 @@ divideBttn.addEventListener("click", () => {
     userInput.textContent += " ÷ ";
     operator = "/";
   } else if (firstNum !== "" && operator !== "" && secondNum !== "") {
+    if (secondNum == '0') {
+      userInput.textContent = 'ande vas espabilao'
+      secondNum = "";
+      operator = "";
+    }
     let result;
     if (operator === "+") {
       result = parseFloat(firstNum) + parseFloat(secondNum);
@@ -313,15 +318,21 @@ function operate(num1, num2, oper) {
     secondNum = "";
     operator = "";
   } else if (oper == "/") {
-    let result = parseFloat(num1) / parseFloat(num2);
-    userInput.textContent = parseFloat(result.toFixed(4))
-      .toString()
-      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
-    firstNum = parseFloat(result.toFixed(4))
-      .toString()
-      .replace(/(\.[0-9]*[1-9])0+$/, "$1");
-    secondNum = "";
-    operator = "";
+    if (num2 == '0') {
+      userInput.textContent = 'ande vas espabilao'
+      secondNum = "";
+      operator = "";
+    } else {
+      let result = parseFloat(num1) / parseFloat(num2);
+      userInput.textContent = parseFloat(result.toFixed(4))
+        .toString()
+        .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+      firstNum = parseFloat(result.toFixed(4))
+        .toString()
+        .replace(/(\.[0-9]*[1-9])0+$/, "$1");
+      secondNum = "";
+      operator = "";
+    }
   }
   return result;
 }

@@ -68,5 +68,5 @@ body {
 }
 
 .calcButton:active {
-  transform: scale(0.99);
+  transform: scale(0.975);
 }
